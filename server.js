@@ -33,61 +33,61 @@ startApp = () => {
         {
             name: 'initialInquiry',
             type: 'rawlist',
-            message: 'Welcome to the employee management program. What would you like to do?',
-            choices: ['View departments', 
-            'View roles',
-            'View employees', 
-            'View employees by manager', 
-            'Add a department', 
-            'Add a role', 
-            'Add an employee', 
-            'Update employee role', 
-            'Update employee manager', 
-            'Remove department', 
-            'Remove role', 
-            'Remove employee', 
-            'View salary by department', 
+            message: 'Welcome to the Employee Management Program. What would you like to do?',
+            choices: ['View Departments', 
+            'View Roles',
+            'View Employees', 
+            'View Employees by Manager', 
+            'Add a Department', 
+            'Add a Role', 
+            'Add an Employee', 
+            'Update Employee role', 
+            'Update Employee manager', 
+            'Remove Department', 
+            'Remove Role', 
+            'Remove Employee', 
+            'View Salary by Department', 
             'Exit']
         }
     ]).then((response) => {
         switch (response.initialInquiry) {
-            case 'View departments':
+            case 'View Departments':
                 viewDepartments();    
                 break;
-            case 'View roles':
+            case 'View Roles':
                 viewRoles();
                 break;
-            case 'View employees':
+            case 'View Employees':
                 viewEmployees();
                 break;
-            case 'View employees by manager':
+            case 'View Employees by Manager':
                 viewEmployeesByManager();
             break;
-            case 'Add a department':
+            case 'Add a Department':
                 addDepartment();
             break;
-            case 'Add a role':
+            case 'Add a Role':
                 addRole();
             break;
-            case 'Add an employee':
+            case 'Add an Employee':
                 addEmployee();
             break;
             case 'Update employee role':
                 updateEmployeeRole();
             break;
-            case 'Update employee manager':
+            case 'Update Employee Manager':
                 updateEmployeesManager();
             break;
-            case 'Remove department':
+            case 'Remove Department':
                 removeDepartment();
             break;
-            case 'Remove role':
+            case 'Remove Role':
                 removeRole();
             break;
-            case 'Remove employee':
+            case 'Remove Employee':
                 removeEmployee();
             break;
-            case 'View salary by department':
+            case 'View Salary by Department':
                 viewDepartmentSalary();
             break;
             case 'Exit':
@@ -99,3 +99,11 @@ startApp = () => {
         }
     })
 }
+
+viewDepartments = () => {
+    connection.query(`SELECT * FROM department ORDER BY department_id ASC;`, (err, res) => {
+        if (err) throw err;
+        console.table('\n', res, '\n');
+        startApp();
+    })
+};
